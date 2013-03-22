@@ -62,10 +62,10 @@
     <string name="menu_activity_requests">加入请求</string>
     <string name="notifications">通知信息</string>
 
-    <string name="pricing">价位</string>
+    <string name="pricing">今日价位</string>
     <string name="repair">上门维修</string>
     <string name="past">维修记录</string>
-    <string name="menu">其他</string>
+    <string name="menu">设置</string>
     <string name="label_phone">电话号码</string>
     <string name="label_name">姓名</string>
     <string name="label_address">地址</string>

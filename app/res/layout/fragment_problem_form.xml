@@ -49,6 +49,7 @@
 
             <EditText
                     android:id="@+id/et_phone"
+                    android:hint="必填，请准确填写"
                     style="@style/SignInEditText"
                     android:imeOptions="actionNext"
                     android:inputType="phone"
@@ -70,6 +71,7 @@
                     style="@style/SignInEditText"
                     android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/actv_address"
+                    android:hint="必填"
                     android:inputType="textPersonName"/>
 
             <TextView
@@ -89,6 +91,7 @@
                     android:imeOptions="actionNext"
                     android:nextFocusDown="@+id/et_address_plus"
                     android:inputType="textPostalAddress"
+                    android:hint="必填,打开gps可自动定位"
                     android:text=""
                     />
 
@@ -132,6 +135,7 @@
                     android:inputType="textMultiLine"
                     android:lines="2"
                     android:gravity="top|left"
+                    android:hint="请写清故障现象，例如：不能正常开机(电源灯也不亮)。"
                     />
 
             <Button
@@ -146,7 +150,8 @@
                     android:text="@string/submit"
                     android:textColor="@color/text"
                     android:textSize="20sp"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    />
 
         </LinearLayout>
     </ScrollView>
