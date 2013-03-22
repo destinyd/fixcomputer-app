@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--self-->
+    <string name="app_name">柳州电脑上门维修</string>
+    <string name="refresh_action">刷新</string>
+    <string name="logout_action">登出</string>
+    <string name="title_column">标题</string>
+    <!--<string name="location_column">定位</string>-->
+    <string name="user_column">用户</string>
+    <string name="date_column">日期</string>
+    <string name="error_loading_users">读取用户失败</string>
+    <string name="error_loading_friend">读取好友失败</string>
+    <string name="error_loading_activities">读取活动失败</string>
+    <string name="no_users">没有用户</string>
+    <string name="no_friend">没有好友</string>
+    <string name="avatar">头像</string>
+    <string name="choose">选择</string>
+
+    <!-- AuthenticatorActivity -->
+    <string name="label_email">Email</string>
+    <string name="label_password">密码</string>
+    <string name="label_sign_in">登录</string>
+    <string name="message_signing_in">正在登录…</string>
+    <string name="message_signing_up">正在注册…</string>
+    <string name="blank_field_warning">请填写此项</string>
+    <string name="prompt">柳州市内台式机上门维修，30元起。</string>
+    <string name="message_post_problem_failure">请求提交失败，请确认是否链接网络。</string>
+
+    <!--Form-->
+    <string name="require_field_warning">请填写必填项</string>
+    <string name="no_google_map">对不起！您未安装谷歌地图，所以不能正常使用。</string>
+    <string name="alter_activity_point">您确定选择此地点作为活动地点吗？</string>
+    <string name="format_alter_message" formatted="false">地点名称：%s\n地址：%s</string>
+    <string name="select_point_name">您点击的是“%s”,再次点击选择此地作为活动地点。</string>
+
+    <string name="label_activity_desc">描述</string>
+    <string name="label_activity_address">地址</string>
+    <string name="label_activity_started_at">开始时间</string>
+    <string name="label_activity_finished_at">结束时间</string>
+    <string name="label_activity_user">发起人</string>
+    <string name="label_activity_users">参与者</string>
+    <string name="label_activity_interested_users">感兴趣者</string>
+
+    <string name="set_started_at">请选择活动开始时间</string>
+    <string name="set_join_message">发送请求加入信息</string>
+    <string name="menu_activity_join">请求参加</string>
+    <string name="menu_activity_quit">退出活动</string>
+    <string name="menu_activity_invite">邀请好友</string>
+    <string name="menu_activity_close">关闭活动</string>
+    <string name="dialog_sure">你确定？</string>
+    <string name="page_new_activity">组织活动</string>
+    <string name="label_notification_type">提醒类型</string>
+    <string name="label_notification_created_at">时间</string>
+    <string name="label_notification_follower">关注者</string>
+    <string name="label_activity">活动</string>
+    <string name="label_notification_reply_admin">回复活动管理员</string>
+    <string name="label_notification_reply_status">答复情况</string>
+    <string name="label_notification_interesting_user">请求加入者</string>
+    <string name="label_activity_request_text">请求内容</string>
+    <string name="label_notification_invite_user">邀请者</string>
+    <string name="menu_activity_requests">加入请求</string>
+    <string name="notifications">通知信息</string>
+
+    <string name="pricing">价位</string>
+    <string name="repair">上门维修</string>
+    <string name="past">维修记录</string>
+    <string name="menu">其他</string>
+    <string name="label_phone">电话号码</string>
+    <string name="label_name">姓名</string>
+    <string name="label_address">地址</string>
+    <string name="label_address_plus">详细地址</string>
+    <string name="label_desc">故障描述</string>
+    <string name="hint_address_plus">几栋几单元几楼几号房</string>
+    <string name="submit">提交</string>
+    <string name="wait">敬请期待</string>
+</resources>

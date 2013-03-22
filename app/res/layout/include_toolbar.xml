@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1"
+        style="@style/layout_vertical"
+        android:background="@color/abs__background_holo_dark"
+        >
+
+    <TextView
+            android:id="@+id/btn_toolbar_0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/pricing"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            style="@style/toolbar_item"
+            android:onClick="handleBtnClick"
+            android:layout_weight="4"
+            android:contentDescription="0"
+            android:textStyle="bold"/>
+
+    <!--android:background="@drawable/button_blue"-->
+    <!--android:onClick="handleTest"-->
+    <!--style="@style/ShadowText"-->
+    <include layout="@layout/include_toolbar_divideline" />
+
+    <TextView
+            android:id="@+id/btn_toolbar_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/repair"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            android:onClick="handleBtnClick"
+            style="@style/toolbar_item_select"
+            android:layout_weight="2"
+            android:contentDescription="1"
+            android:textStyle="bold"/>
+    <include layout="@layout/include_toolbar_divideline" />
+    <TextView
+            android:id="@+id/btn_toolbar_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/past"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            style="@style/toolbar_item"
+            android:onClick="handleBtnClick"
+            android:layout_weight="2"
+            android:contentDescription="2"
+            android:textStyle="bold"/>
+    <!--android:onClick="handleReg"-->
+    <include layout="@layout/include_toolbar_divideline" />
+    <TextView
+            android:id="@+id/btn_toolbar_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/menu"
+            android:textColor="@color/text"
+            android:textSize="14sp"
+            style="@style/toolbar_item"
+            android:onClick="handleBtnClick"
+            android:contentDescription="3"
+            android:layout_weight="4"
+            android:textStyle="bold"/>
+</LinearLayout>

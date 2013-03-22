@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <!--jiepang-->
+  <dimen name="venue_title_height_2">120.0dip</dimen>
+  <dimen name="sample_image_length">100.0dip</dimen>
+  <dimen name="normal_padding_length">10.0dip</dimen>
+  <dimen name="profile_image_length">93.0dip</dimen>
+  <dimen name="tiny1_padding_length">3.0dip</dimen>
+  <dimen name="huge_padding_length">30.0dip</dimen>
+  <dimen name="small_padding_length">5.0dip</dimen>
+  <!--momo-->
+  <dimen name="style_patterns">16.0dip</dimen>
+</resources>

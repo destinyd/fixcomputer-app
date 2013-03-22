@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.slidingmenu.lib.SlidingMenu.lib.SlidingMenu
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:sliding="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/slidingmenulayout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        />
+
+
+        <!--sliding:fadeDegree="float"-->
+        <!--sliding:behindScrollScale="@dimen/YOUR_SCALE"-->
+        <!--sliding:viewAbove="@layout/YOUR_ABOVE_VIEW"-->
+        <!--sliding:viewBehind="@layout/YOUR_BEHIND_BEHIND"-->
+        <!--sliding:touchModeAbove="margin|fullscreen"-->
+        <!--sliding:behindOffset="@dimen/YOUR_OFFSET"-->
+        <!--sliding:behindWidth="@dimen/YOUR_WIDTH"-->
+        <!--sliding:shadowDrawable="@drawable/YOUR_SHADOW"-->
+        <!--sliding:shadowWidth="@dimen/YOUR_SHADOW_WIDTH"-->
+        <!--sliding:fadeEnabled="true|false"-->
+        <!--sliding:selectorEnabled="true|false"-->
+        <!--sliding:selectorDrawable="@drawable/YOUR_SELECTOR"-->

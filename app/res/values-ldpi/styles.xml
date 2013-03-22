@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!--jiepang-->
+    <style name="title_primary">
+        <item name="android:textSize">14.0px</item>
+        <item name="android:textColor">#ff3b3b3b</item>
+    </style>
+</resources>
+
+

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <style name="toolbar_item" parent="layout_horizontal">
+        <!--<item name="android:textColor">@color/abs__bright_foreground_disabled_holo_light</item>-->
+        <item name="android:textColor">@color/abs__primary_text_holo_dark</item>
+        <item name="android:background">@color/toolbar_item_bg</item>
+        <!--<item name="android:background">@color/abs__background_holo_dark</item>-->
+        <item name="android:clickable">true</item>
+        <item name="android:height">40sp</item>
+    </style>
+    <style name="toolbar_item_select" parent="layout_horizontal">
+        <item name="android:textColor">@color/abs__primary_text_holo_dark</item>
+        <item name="android:background">@color/toolbar_item_selected_bg</item>
+        <item name="android:clickable">true</item>
+        <item name="android:height">40sp</item>
+    </style>
+</resources>
