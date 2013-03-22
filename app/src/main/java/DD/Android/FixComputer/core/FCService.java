@@ -62,4 +62,19 @@ public class FCService {
             return Collections.emptyList();
         }
     }
+
+    public static List<Price> getPrices(String uuid) throws IOException  {
+        try {
+//            HttpRequest request = get(URL_ACTIVITIES + "?" + HEADER_PARSE_ACCESS_TOKEN + "=" + apiKey)
+            HttpRequest request = get(URL_PRICING + "?" + "uuid=" +uuid);
+            String body = request.body();
+            List<Price> response = JSON.parseArray(body, Price.class);
+            return response;
+        } catch (HttpRequest.HttpRequestException e) {
+            throw e.getCause();
+        }
+        catch (Exception e){
+            return Collections.emptyList();
+        }
+    }
 }

@@ -64,6 +64,8 @@ public class Constants {
         public static final String URL_BASE = "http://192.168.1.4:3003";
 
         public static final String URL_PROBLEMS = URL_BASE + "/android.json";
+
+        public static final String URL_PRICING = URL_BASE + "/pricing.json";
 //        public static final String URL_BASE = "http://fixcomputer.com";
 
 //        public static final String API_BASE = URL_BASE + "/api/v1";

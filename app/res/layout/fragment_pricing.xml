@@ -5,10 +5,15 @@
               android:layout_height="match_parent"
               android:background="@drawable/main_background"
               android:orientation="vertical">
-
-
     <ImageView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:id="@+id/iv_pricing"/>
+            android:id="@+id/iv_pricing"
+            android:visibility="gone"
+            />
+    <ListView
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/lv_pricing"
+            />
 </LinearLayout>
