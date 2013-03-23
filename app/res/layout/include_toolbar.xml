@@ -78,7 +78,7 @@
             android:textColor="@color/text"
             android:textSize="14sp"
             style="@style/toolbar_item"
-            android:onClick="handleBtnClick"
+            android:onClick="handleMenu"
             android:contentDescription="3"
             android:layout_weight="4"
             android:textStyle="bold"/>

@@ -3,10 +3,13 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.*;
+import com.actionbarsherlock.view.MenuItem;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.slidingmenu.lib.SlidingMenu;
 import com.umeng.analytics.MobclickAgent;
@@ -52,7 +55,7 @@ public class ActivityMain extends
 
     SlidingMenu menu;
 
-    int toolbar_item_selected_bg,toolbar_item_bg;
+    int toolbar_item_selected_bg, toolbar_item_bg;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -60,7 +63,7 @@ public class ActivityMain extends
 
 
         setContentView(R.layout.act_carousel);
-        mSectionsPagerAdapter = new AdapterFC(
+        mSectionsPagerAdapter = new AdapterFC(this,
                 getSupportFragmentManager());
 
         list_btn = new ArrayList<TextView>();
@@ -88,8 +91,16 @@ public class ActivityMain extends
             public void onPageSelected(int position) {
                 pop_btn_toolbar(position);
 //                set_btn_toolbar_press(position);
-                if (position == 3) {
-                    show_sliding_menu();
+                switch (position) {
+                    case 2:
+                        menu.setSlidingEnabled(true);
+                        break;
+//                    case 3:
+//                        show_menu();
+//                        break;
+                    default:
+                        menu.setSlidingEnabled(false);
+                        break;
                 }
             }
 
@@ -111,7 +122,7 @@ public class ActivityMain extends
 //    }
 
     private void pop_btn_toolbar(int id) {
-        for(TextView tv : list_btn){
+        for (TextView tv : list_btn) {
             tv.setBackgroundColor(toolbar_item_bg);
         }
         list_btn.get(id).setBackgroundColor(toolbar_item_selected_bg);
@@ -121,17 +132,34 @@ public class ActivityMain extends
         menu = new SlidingMenu(this);
         menu.setSlidingEnabled(false);
         menu.setMode(SlidingMenu.RIGHT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 //        menu.setShadowWidthRes(R.dimen.shadow_width);
-        menu.setShadowDrawable(R.drawable.shadow);
-//        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
+//        menu.setShadowDrawable(R.drawable.shadow);
+        menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
-        menu.setMenu(R.layout.menu_frame);
+        menu.setMenu(R.layout.fragment_menu);
 
     }
 
-    public void show_sliding_menu() {
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                menu.toggle();
+                return true;
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void handleMenu(View v) {
+        show_menu();
+    }
+
+    public void show_menu() {
+        if (!menu.isMenuShowing())
+            menu.showMenu();
         menu.showContent();
     }
 
@@ -152,7 +180,7 @@ public class ActivityMain extends
 
     public void handleAd(View view) {
         ExchangeDataService service = new ExchangeDataService();
-        new ExchangeViewManager(this,service)
+        new ExchangeViewManager(this, service)
                 .addView(ExchangeConstants.type_list_curtain, null);
     }
 
@@ -167,5 +195,30 @@ public class ActivityMain extends
         super.onPause();
         MobclickAgent.onPause(this);
     }
+
+    public void menu_click(View v) {
+        TextView menu_feedback = (TextView)findViewById(id.menu_feedback);
+        TextView menu_exit = (TextView)findViewById(id.menu_exit);
+
+        if (menu_feedback.equals(v)) {
+            UMFeedbackService.openUmengFeedbackSDK(this);
+        } else if (menu_exit.equals(v)) {
+            DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface d, int which) {
+                    MobclickAgent.onKillProcess(ActivityMain.this);
+                    System.exit(0);
+                }
+            };
+
+            new AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.alter_activity_point))
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setMessage("确认要退出？")
+                    .setNegativeButton(getString(android.R.string.cancel), null)
+                    .setPositiveButton(getString(android.R.string.ok), OkClick)
+                    .show();
+        }
+    }
+
 
 }

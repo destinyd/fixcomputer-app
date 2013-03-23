@@ -218,9 +218,9 @@ public class Constants {
         public static final int PRICING = 0;
         public static final int PROBLEM_FORM = 1;
         public static final int PROBLEMS = 2;
-        public static final int MENU = 3;
-
-        public static final int COUNT = 4;
+//        public static final int MENU = 3;
+//        public static final int COUNT = 4;
+        public static final int COUNT = 3;
     }
 
 }

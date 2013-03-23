@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.actionbarsherlock.view.MenuItem;
 import com.umeng.analytics.MobclickAgent;
 import com.umeng.fb.UMFeedbackService;
 import roboguice.inject.InjectView;
@@ -38,7 +39,7 @@ public class FragmentMenu extends
         View.OnClickListener clicker = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                click(v);
+                menu_click(v);
             }
         };
         menu_exit.setOnClickListener(clicker);
@@ -47,7 +48,7 @@ public class FragmentMenu extends
 
     }
 
-    private void click(View v) {
+    public void menu_click(View v) {
         if (menu_feedback.equals(v)) {
             UMFeedbackService.openUmengFeedbackSDK(getActivity());
         } else if (menu_exit.equals(v)) {
@@ -59,9 +60,8 @@ public class FragmentMenu extends
             };
 
             new AlertDialog.Builder(getActivity())
-                    .setTitle(getString(R.string.alter_activity_point))
+                    .setTitle("确认要退出？")
                     .setIcon(android.R.drawable.ic_dialog_info)
-                    .setMessage("确认要退出？")
                     .setNegativeButton(getString(android.R.string.cancel), null)
                     .setPositiveButton(getString(android.R.string.ok), OkClick)
                     .show();

@@ -10,4 +10,9 @@
   <dimen name="small_padding_length">5.0dip</dimen>
   <!--momo-->
   <dimen name="style_patterns">16.0dip</dimen>
+
+  <!--slidingmenu-->
+    <dimen name="slidingmenu_offset">60dp</dimen>
+    <dimen name="list_padding">10dp</dimen>
+    <dimen name="shadow_width">15dp</dimen>
 </resources>

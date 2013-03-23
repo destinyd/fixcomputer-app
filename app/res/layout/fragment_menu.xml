@@ -13,6 +13,7 @@
               android:padding="10dip"
               android:minHeight="50dip"
               android:clickable="true"
+              android:onClick="menu_click"
             />
     <include layout="@layout/include_patterns_divideline"/>
     <TextView android:id="@+id/menu_exit"
@@ -23,6 +24,7 @@
               android:padding="10dip"
               android:minHeight="50dip"
               android:clickable="true"
+              android:onClick="menu_click"
             />
     <!--<ListView-->
             <!--android:layout_width="fill_parent"-->
