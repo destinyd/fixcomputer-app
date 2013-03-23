@@ -290,8 +290,14 @@ public class FragmentProblemForm extends
         problem.setAddress(actv_address.getText().toString());
         problem.setAddress_plus(et_address_plus.getText().toString());
         problem.setDesc(et_desc.getText().toString());
-        problem.setLat(0.0);
-        problem.setLng(0.0);
+        if(locData != null && !(locData.latitude == 4.9E-324 && locData.longitude == 4.9E-324)){
+            problem.setLat(locData.latitude);
+            problem.setLng(locData.longitude);
+        }
+        else{
+            problem.setLat(0.0);
+            problem.setLng(0.0);
+        }
 
         postTask = new RoboAsyncTask<Boolean>(getActivity()) {
             public Boolean call() throws Exception {
