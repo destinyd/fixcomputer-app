@@ -159,7 +159,7 @@ public class ActivityMain extends
 
     public void show_menu() {
         if (!menu.isMenuShowing())
-            menu.showMenu();
+            menu.showMenu(true);
         menu.showContent();
     }
 
