@@ -9,6 +9,13 @@ import android.view.View;
 import android.widget.*;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.slidingmenu.lib.SlidingMenu;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.fb.NotificationType;
+import com.umeng.fb.UMFeedbackService;
+import com.umeng.newxp.common.ExchangeConstants;
+import com.umeng.newxp.controller.ExchangeDataService;
+import com.umeng.newxp.view.ExchangeViewManager;
+import com.umeng.update.UmengUpdateAgent;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -93,6 +100,9 @@ public class ActivityMain extends
         });
 
         init_sliding_menu();
+        MobclickAgent.updateOnlineConfig(this);
+        UmengUpdateAgent.update(this);
+        UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
     }
 
 //    private void set_btn_toolbar_press(int position) {
@@ -138,6 +148,24 @@ public class ActivityMain extends
 //        if(id == 3){
 //            show_sliding_menu();
 //        }
+    }
+
+    public void handleAd(View view) {
+        ExchangeDataService service = new ExchangeDataService();
+        new ExchangeViewManager(this,service)
+                .addView(ExchangeConstants.type_list_curtain, null);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onResume(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPause(this);
     }
 
 }

@@ -9,6 +9,19 @@
         android:background="@color/abs__background_holo_dark"
         >
 
+    <!--<TextView-->
+            <!--android:id="@+id/btn_toolbar_ad"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center"-->
+            <!--android:text="其他"-->
+            <!--android:textColor="@color/text"-->
+            <!--android:textSize="14sp"-->
+            <!--style="@style/toolbar_item"-->
+            <!--android:onClick="handleAd"-->
+            <!--android:layout_weight="4"-->
+            <!--android:textStyle="bold"/>-->
+    <!--<include layout="@layout/include_toolbar_divideline" />-->
     <TextView
             android:id="@+id/btn_toolbar_0"
             android:layout_width="wrap_content"
@@ -55,7 +68,6 @@
             android:layout_weight="2"
             android:contentDescription="2"
             android:textStyle="bold"/>
-    <!--android:onClick="handleReg"-->
     <include layout="@layout/include_toolbar_divideline" />
     <TextView
             android:id="@+id/btn_toolbar_3"

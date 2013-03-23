@@ -23,6 +23,7 @@ import com.baidu.mapapi.map.LocationData;
 import com.baidu.mapapi.search.*;
 import com.baidu.platform.comapi.basestruct.GeoPoint;
 import com.github.kevinsawicki.wishlist.Toaster;
+import com.umeng.analytics.MobclickAgent;
 import roboguice.inject.InjectView;
 import roboguice.util.Ln;
 import roboguice.util.RoboAsyncTask;
@@ -349,6 +350,7 @@ public class FragmentProblemForm extends
 
     public void onPostSuccess(boolean result) {
         if (result) {
+            MobclickAgent.onEvent(getActivity(), "post Problem");
             Bundle args = new Bundle();
             args.putSerializable(PROBLEM, problem);
             FragmentProblems fp = FragmentProblems.getInstance();

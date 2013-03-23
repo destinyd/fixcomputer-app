@@ -2,7 +2,7 @@
 
 <resources>
     <!--self-->
-    <string name="app_name">柳州电脑上门维修</string>
+    <string name="app_name">柳州电脑维修</string>
     <string name="refresh_action">刷新</string>
     <string name="logout_action">登出</string>
     <string name="title_column">标题</string>

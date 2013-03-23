@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import com.umeng.analytics.MobclickAgent;
+import com.umeng.fb.UMFeedbackService;
 import roboguice.inject.InjectView;
 
 /**
@@ -21,6 +23,8 @@ public class FragmentMenu extends
 //    private ListView lv_menu;
     @InjectView(id.menu_exit)
     private TextView menu_exit;
+    @InjectView(id.menu_feedback)
+    private TextView menu_feedback;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -30,27 +34,37 @@ public class FragmentMenu extends
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
-        menu_exit.setOnClickListener(new View.OnClickListener() {
+
+        View.OnClickListener clicker = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface d, int which) {
-                        System.exit(0);
-                    }
-                };
-
-                new AlertDialog.Builder(getActivity())
-                        .setTitle(getString(R.string.alter_activity_point))
-                        .setIcon(android.R.drawable.ic_dialog_info)
-                        .setMessage("确认要退出？")
-                        .setNegativeButton(getString(android.R.string.cancel), null)
-                        .setPositiveButton(getString(android.R.string.ok), OkClick)
-                        .show();
-
-
+                click(v);
             }
+        };
+        menu_exit.setOnClickListener(clicker);
 
-        });
+        menu_feedback.setOnClickListener(clicker);
+
+    }
+
+    private void click(View v) {
+        if (menu_feedback.equals(v)) {
+            UMFeedbackService.openUmengFeedbackSDK(getActivity());
+        } else if (menu_exit.equals(v)) {
+            DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface d, int which) {
+                    MobclickAgent.onKillProcess(getActivity());
+                    System.exit(0);
+                }
+            };
+
+            new AlertDialog.Builder(getActivity())
+                    .setTitle(getString(R.string.alter_activity_point))
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setMessage("确认要退出？")
+                    .setNegativeButton(getString(android.R.string.cancel), null)
+                    .setPositiveButton(getString(android.R.string.ok), OkClick)
+                    .show();
+        }
     }
 }

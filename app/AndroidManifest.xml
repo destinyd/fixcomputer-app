@@ -64,6 +64,14 @@
                       android:resizeable="true" android:anyDensity="true"/>
     <!--baidu end-->
 
+    <!--umeng-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <!--umeng end-->
+
     <!--<permission-->
     <!--android:name="DD.Android.Zhaohai.permission.MAPS_RECEIVE"-->
     <!--android:protectionLevel="signature"/>-->
@@ -103,6 +111,21 @@
                       android:required="false"/>
         <uses-library android:name="com.baidu.mapapi"
                       android:required="false"/>
+
+        <!--umeng-->
+        <meta-data android:value="YOUR_APP_KEY" android:name="514d0dac56240b97470112fb"></meta-data>
+        <meta-data android:value="Channel ID" android:name="dev"/>
+        <activity android:name="com.umeng.fb.ui.SendFeedback"
+                  android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.umeng.fb.ui.FeedbackConversations" />
+        <activity android:name="com.umeng.fb.ui.FeedbackConversation"
+                  android:configChanges="keyboard" />
+        <service
+                android:name="com.umeng.common.net.DownloadingService"
+                android:exported="true"
+                android:process=":DownloadingService" >
+        </service>
+        <!--umeng end-->
     </application>
     <uses-feature
             android:glEsVersion="0x00020000"
