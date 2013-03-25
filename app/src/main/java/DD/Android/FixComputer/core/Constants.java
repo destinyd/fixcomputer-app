@@ -65,6 +65,12 @@ public class Constants {
 
         public static final String URL_PROBLEMS = URL_BASE + "/android.json";
 
+        public static final String FORMAT_URL_PROBLEM = URL_BASE + "/android/%s.json";
+
+        public static final String FORMAT_URL_PROBLEM_WITH_UUID = URL_BASE + "/android/%s.json?uuid=%s";
+
+        public static final String FORMAT_URL_PROBLEM_WITH_UUID_STATUS = URL_BASE + "/android/%s.json?uuid=%s&problem[status]=%s";
+
         public static final String URL_PRICING = URL_BASE + "/pricing.json";
 //        public static final String URL_BASE = "http://fixcomputer.com";
 

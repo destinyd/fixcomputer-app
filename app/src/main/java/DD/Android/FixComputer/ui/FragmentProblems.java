@@ -6,12 +6,15 @@ import DD.Android.FixComputer.R.id;
 import DD.Android.FixComputer.core.DeviceUuidFactory;
 import DD.Android.FixComputer.core.FCService;
 import DD.Android.FixComputer.core.Problem;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import com.costum.android.widget.LoadMoreListView;
 import com.github.kevinsawicki.wishlist.Toaster;
 import roboguice.inject.InjectView;
 
@@ -28,7 +31,7 @@ import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
 public class FragmentProblems extends
         FragmentFC {
     @InjectView(id.lv_list)
-    private ListView lv_list;
+    private LoadMoreListView lv_list;
     //    @InjectExtra(PROBLEM)
     protected Problem problem;
 
@@ -61,7 +64,20 @@ public class FragmentProblems extends
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        lv_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                onListItemClick((LoadMoreListView) parent, view, position, id);
+            }
+        });
         new GetProblems().execute();
+    }
+
+    public void onListItemClick(LoadMoreListView l, View v, int position, long id) {
+        Problem problem = ((Problem) l.getItemAtPosition(position));
+        startActivity(new Intent(getActivity(), ActivityProblem.class).putExtra(PROBLEM, problem));
     }
 
     @Override

@@ -5,9 +5,10 @@
               android:layout_height="match_parent"
               android:background="@drawable/main_background"
               android:orientation="vertical">
-    <ListView
+    <com.costum.android.widget.LoadMoreListView
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:id="@+id/lv_list"
+            style="@style/ListView"
             />
 </LinearLayout>

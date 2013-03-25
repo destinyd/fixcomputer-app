@@ -99,13 +99,16 @@
             </intent-filter>
         </activity>
 
+        <activity
+                android:name=".ui.ActivityProblem"
+                android:windowSoftInputMode="adjustPan"
+                />
+
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>
-
-
-        <meta-data
-                android:name="com.google.android.maps.v2.API_KEY"
-                android:value="AIzaSyCmnh6DTy2xm7KKnpEKMdLN6hlCvZvqtWY"/>
+        <!--<meta-data-->
+                <!--android:name="com.google.android.maps.v2.API_KEY"-->
+                <!--android:value="AIzaSyCmnh6DTy2xm7KKnpEKMdLN6hlCvZvqtWY"/>-->
 
         <uses-library android:name="com.google.android.maps"
                       android:required="false"/>

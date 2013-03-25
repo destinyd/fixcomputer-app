@@ -2,6 +2,7 @@ package DD.Android.FixComputer.core;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,6 +18,7 @@ public class Problem implements Serializable {
     String phone,name,address,address_plus,desc,status,uuid;
     Double lat,lng,price;
     Date created_at,updated_at;
+    List<StatusRecoding> status_recodings;
 
     public String get_id() {
         return _id;
@@ -120,6 +122,14 @@ public class Problem implements Serializable {
 
     public void setUuid(String uuid) {
         this.uuid = uuid;
+    }
+
+    public List<StatusRecoding> getStatus_recodings() {
+        return status_recodings;
+    }
+
+    public void setStatus_recodings(List<StatusRecoding> status_recodings) {
+        this.status_recodings = status_recodings;
     }
 
     public String getStatusStr(){

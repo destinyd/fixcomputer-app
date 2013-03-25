@@ -330,7 +330,7 @@ public class FragmentProblemForm extends
             protected void onFinally() throws RuntimeException {
 //                hideProgress();
                 progressDialogDismiss();
-//                postTask.cancel(true);
+//                postTask.update_status(true);
                 postTask = null;
             }
         };

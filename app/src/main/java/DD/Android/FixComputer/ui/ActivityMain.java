@@ -8,7 +8,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.*;
+import android.widget.TextView;
 import com.actionbarsherlock.view.MenuItem;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.slidingmenu.lib.SlidingMenu;
@@ -24,8 +24,6 @@ import roboguice.util.RoboAsyncTask;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static com.github.kevinsawicki.http.HttpRequest.post;
 
 /**
  * Activity to authenticate the ABUser against an API (example API on Parse.com)
@@ -114,6 +112,7 @@ public class ActivityMain extends
         MobclickAgent.updateOnlineConfig(this);
         UmengUpdateAgent.update(this);
         UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
+        MobclickAgent.setDebugMode(true);
     }
 
 //    private void set_btn_toolbar_press(int position) {

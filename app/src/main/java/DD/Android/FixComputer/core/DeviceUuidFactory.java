@@ -68,8 +68,8 @@ public class DeviceUuidFactory {
      * usable value.
      *
      * In some rare circumstances, this ID may change.  In particular, if the device is factory reset a new device ID
-     * may be generated.  In addition, if a user upgrades their phone from certain buggy implementations of Android 2.2
-     * to a newer, non-buggy version of Android, the device ID may change.  Or, if a user uninstalls your app on
+     * may be generated.  In addition, if a problem upgrades their phone from certain buggy implementations of Android 2.2
+     * to a newer, non-buggy version of Android, the device ID may change.  Or, if a problem uninstalls your app on
      * a device that has neither a proper Android ID nor a Device ID, this ID may change on reinstallation.
      *
      * Note that if the code falls back on using TelephonyManager.getDeviceId(), the resulting ID will NOT
