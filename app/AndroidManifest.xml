@@ -104,6 +104,14 @@
                 android:windowSoftInputMode="adjustPan"
                 />
 
+        <service
+                android:name=".service.ProblemsService"
+                android:process=":message" >
+            <intent-filter>
+                <action android:name="DD.Android.FixComputer.service.ProblemsService" />
+            </intent-filter>
+        </service>
+
         <service android:name="com.baidu.location.f" android:enabled="true" android:process=":remote">
         </service>
         <!--<meta-data-->

@@ -3,8 +3,10 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
+import DD.Android.FixComputer.service.ProblemsService;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -113,6 +115,8 @@ public class ActivityMain extends
         UmengUpdateAgent.update(this);
         UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
         MobclickAgent.setDebugMode(true);
+        Intent serviceIntent = new Intent(this, ProblemsService.class);
+        startService(serviceIntent);
     }
 
 //    private void set_btn_toolbar_press(int position) {

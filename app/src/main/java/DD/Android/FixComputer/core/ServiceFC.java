@@ -15,7 +15,7 @@ import static com.github.kevinsawicki.http.HttpRequest.get;
 import static com.github.kevinsawicki.http.HttpRequest.post;
 
 
-public class FCService {
+public class ServiceFC {
 
     /**
      * Read and connect timeout in milliseconds
@@ -93,6 +93,23 @@ public class FCService {
             if(request.ok())
             {
                 Problem respons = JSON.parseObject(body, Problem.class);
+                return respons;
+            }
+            return null;
+        } catch (HttpRequest.HttpRequestException e) {
+            throw e.getCause();
+        }
+    }
+
+    public static ProblemStatus getStatus(String uuid) throws IOException  {
+        try {
+            String url = String.format(FORMAT_URL_STATUS,  uuid);
+            HttpRequest request = get(url)
+                    ;
+            String body = request.body();
+            if(request.ok())
+            {
+                ProblemStatus respons = JSON.parseObject(body, ProblemStatus.class);
                 return respons;
             }
             return null;

@@ -4,9 +4,8 @@ package DD.Android.FixComputer.ui;
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
 import DD.Android.FixComputer.core.DeviceUuidFactory;
-import DD.Android.FixComputer.core.FCService;
+import DD.Android.FixComputer.core.ServiceFC;
 import DD.Android.FixComputer.core.Price;
-import DD.Android.FixComputer.core.Problem;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -57,7 +56,7 @@ public class FragmentPricing extends
         //步骤2：实现抽象方法doInBackground()，代码将在后台线程中执行，由execute()触发，由于这个例子并不需要传递参数，使用Void...，具体书写方式为范式书写
         protected Void/*参数3*/ doInBackground(Void... params/*参数1*/) {
             try {
-                prices = FCService.getPrices(new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
+                prices = ServiceFC.getPrices(new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
             } catch (IOException e) {
                 Toaster.showLong(getActivity(), "读取失败");
             }

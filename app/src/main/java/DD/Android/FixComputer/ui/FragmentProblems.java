@@ -4,7 +4,7 @@ package DD.Android.FixComputer.ui;
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
 import DD.Android.FixComputer.core.DeviceUuidFactory;
-import DD.Android.FixComputer.core.FCService;
+import DD.Android.FixComputer.core.ServiceFC;
 import DD.Android.FixComputer.core.Problem;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -13,14 +13,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ListView;
 import com.costum.android.widget.LoadMoreListView;
 import com.github.kevinsawicki.wishlist.Toaster;
 import roboguice.inject.InjectView;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
@@ -103,7 +101,7 @@ public class FragmentProblems extends
         //步骤2：实现抽象方法doInBackground()，代码将在后台线程中执行，由execute()触发，由于这个例子并不需要传递参数，使用Void...，具体书写方式为范式书写
         protected Void/*参数3*/ doInBackground(Void... params/*参数1*/) {
             try {
-                problems = FCService.getProblems(new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
+                problems = ServiceFC.getProblems(new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
             } catch (IOException e) {
                 Toaster.showLong(getActivity(),"读取失败");
             }

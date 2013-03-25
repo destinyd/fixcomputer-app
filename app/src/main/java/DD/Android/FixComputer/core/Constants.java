@@ -71,6 +71,8 @@ public class Constants {
 
         public static final String FORMAT_URL_PROBLEM_WITH_UUID_STATUS = URL_BASE + "/android/%s.json?uuid=%s&problem[status]=%s";
 
+        public static final String FORMAT_URL_STATUS = URL_BASE + "/status.json?uuid=%s";
+
         public static final String URL_PRICING = URL_BASE + "/pricing.json";
 //        public static final String URL_BASE = "http://fixcomputer.com";
 
@@ -207,14 +209,15 @@ public class Constants {
             public static final int CLOSE = 3;
         }
 
-        public static int NOTIFICATION_ID = 1000;
+        public static int NOTIFICATION_ID = 11;
     }
 
     public static class Delay {
         private Delay() {
         }
 
-        public static final int GET_NOTIFICATION = 120000;
+        public static final int GET_STATUS = 5000;
+//        public static final int GET_STATUS = 600000;
     }
 
     public static class ToolBar {

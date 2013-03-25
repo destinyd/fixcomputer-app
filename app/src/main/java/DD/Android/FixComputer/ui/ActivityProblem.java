@@ -2,15 +2,11 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.core.*;
-import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
@@ -204,7 +200,7 @@ public class ActivityProblem extends ActivityFC {
 
         task = new RoboAsyncTask<Boolean>(this) {
             public Boolean call() throws Exception {
-                problem = FCService.getProblem(problem.get_id(), new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString());
+                problem = ServiceFC.getProblem(problem.get_id(), new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString());
                 return true;
             }
 
@@ -241,7 +237,7 @@ public class ActivityProblem extends ActivityFC {
 
         task = new RoboAsyncTask<Boolean>(this) {
             public Boolean call() throws Exception {
-                problem = FCService.updateProblem(problem.get_id(), new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString(), "cancel");
+                problem = ServiceFC.updateProblem(problem.get_id(), new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString(), "cancel");
                 return true;
             }
 

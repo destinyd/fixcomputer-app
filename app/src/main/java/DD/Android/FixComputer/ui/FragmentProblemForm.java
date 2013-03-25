@@ -6,7 +6,7 @@ import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
 import DD.Android.FixComputer.R.string;
 import DD.Android.FixComputer.core.DeviceUuidFactory;
-import DD.Android.FixComputer.core.FCService;
+import DD.Android.FixComputer.core.ServiceFC;
 import DD.Android.FixComputer.core.Problem;
 import android.accounts.AccountManager;
 import android.os.Bundle;
@@ -33,8 +33,6 @@ import java.util.TimerTask;
 import static com.github.kevinsawicki.http.HttpRequest.post;
 
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
-
-import static DD.Android.FixComputer.core.Constants.ToolBar.*;
 
 /**
  * Activity to authenticate the ABUser against an API (example API on Parse.com)
@@ -302,7 +300,7 @@ public class FragmentProblemForm extends
         postTask = new RoboAsyncTask<Boolean>(getActivity()) {
             public Boolean call() throws Exception {
 
-                problem = FCService.sendProblem(problem, new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
+                problem = ServiceFC.sendProblem(problem, new DeviceUuidFactory(getActivity()).getDeviceUuid().toString());
 
                 if (problem != null)
                     return true;
