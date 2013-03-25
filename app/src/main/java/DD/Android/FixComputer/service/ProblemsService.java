@@ -111,7 +111,7 @@ public class ProblemsService extends RoboService {
                     }
                     //每次通知完，通知ID递增一下，避免消息覆盖掉
                     //                         messageNotificationID++;
-                } catch (IOException e) {
+                } catch (Exception e) {
                     e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
                 try {
