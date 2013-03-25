@@ -113,8 +113,8 @@
                       android:required="false"/>
 
         <!--umeng-->
-        <meta-data android:value="YOUR_APP_KEY" android:name="514d0dac56240b97470112fb"></meta-data>
-        <meta-data android:value="Channel ID" android:name="dev"/>
+        <meta-data android:value="514d0dac56240b97470112fb" android:name="UMENG_APPKEY"></meta-data>
+        <meta-data android:value="dev" android:name="UMENG_CHANNEL"/>
         <activity android:name="com.umeng.fb.ui.SendFeedback"
                   android:windowSoftInputMode="adjustResize" />
         <activity android:name="com.umeng.fb.ui.FeedbackConversations" />
