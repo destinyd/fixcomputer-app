@@ -2,6 +2,8 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.core.*;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -16,6 +18,7 @@ import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
+import static DD.Android.FixComputer.core.Constants.Other.NOTIFICATION_ID;
 
 public class ActivityProblem extends ActivityFC {
 
@@ -72,6 +75,8 @@ public class ActivityProblem extends ActivityFC {
         tv_created_at.setText(PrettyDateFormat.defaultFormat(problem.getCreated_at()));
 
         start_get_problem(null);
+        NotificationManager messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        messageNotificatioManager.cancel(NOTIFICATION_ID);
     }
 
     @Override
