@@ -277,12 +277,12 @@ public class ActivityProblem extends ActivityFC {
         task.execute();
     }
 //
-    public void update_status(String aciton) {
+    public void update_status(String paction) {
         if (task != null) {
             return;
         }
 
-        this.action = action;
+        action = paction;
 
         progressDialogShow(this);
 
