@@ -9,6 +9,7 @@
     <item android:id="@+id/menu_cancel"
           android:showAsAction="ifRoom"
           android:title="取消"
+          android:visible="false"
             />
 
     <!--<item android:id="@+id/menu_contacted"-->
