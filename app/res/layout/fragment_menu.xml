@@ -26,6 +26,17 @@
               android:clickable="true"
               android:onClick="menu_click"
             />
+    <include layout="@layout/include_patterns_divideline"/>
+    <TextView android:id="@+id/menu_full_exit"
+              android:text="完全退出"
+              style="@style/user_profile_score_text"
+              android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:padding="10dip"
+              android:minHeight="50dip"
+              android:clickable="true"
+              android:onClick="menu_click"
+            />
     <!--<ListView-->
             <!--android:layout_width="fill_parent"-->
             <!--android:layout_height="fill_parent"-->

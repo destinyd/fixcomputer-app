@@ -57,6 +57,8 @@ public class ActivityMain extends
 
     int toolbar_item_selected_bg, toolbar_item_bg;
 
+    Intent serviceIntent;
+
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -115,7 +117,7 @@ public class ActivityMain extends
         UmengUpdateAgent.update(this);
         UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
         MobclickAgent.setDebugMode(true);
-        Intent serviceIntent = new Intent(this, ProblemsService.class);
+        serviceIntent = new Intent(this, ProblemsService.class);
         startService(serviceIntent);
     }
 
@@ -210,25 +212,50 @@ public class ActivityMain extends
     public void menu_click(View v) {
         TextView menu_feedback = (TextView)findViewById(id.menu_feedback);
         TextView menu_exit = (TextView)findViewById(id.menu_exit);
+        TextView menu_full_exit = (TextView)findViewById(id.menu_full_exit);
 
         if (menu_feedback.equals(v)) {
             UMFeedbackService.openUmengFeedbackSDK(this);
         } else if (menu_exit.equals(v)) {
             DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int which) {
-                    MobclickAgent.onKillProcess(ActivityMain.this);
-                    System.exit(0);
+                    exit();
                 }
             };
 
             new AlertDialog.Builder(this)
-                    .setTitle(getString(R.string.alter_activity_point))
+                    .setTitle("确认要退出？")
                     .setIcon(android.R.drawable.ic_dialog_info)
-                    .setMessage("确认要退出？")
                     .setNegativeButton(getString(android.R.string.cancel), null)
                     .setPositiveButton(getString(android.R.string.ok), OkClick)
                     .show();
         }
+        else if(menu_full_exit.equals(v)){
+            DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface d, int which) {
+
+                    full_exit();
+                }
+            };
+
+            new AlertDialog.Builder(this)
+                    .setTitle("确认要完全退出?")
+                    .setIcon(android.R.drawable.ic_dialog_info)
+                    .setMessage("这样将不再接收故障状态更改信息提醒!")
+                    .setNegativeButton(getString(android.R.string.cancel), null)
+                    .setPositiveButton(getString(android.R.string.ok), OkClick)
+                    .show();
+        }
+    }
+
+    private void full_exit() {
+        stopService(serviceIntent);
+        exit();
+    }
+
+    private void exit() {
+        MobclickAgent.onKillProcess(ActivityMain.this);
+        System.exit(0);
     }
 
 
