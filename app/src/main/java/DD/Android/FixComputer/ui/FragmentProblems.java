@@ -9,6 +9,7 @@ import DD.Android.FixComputer.core.Problem;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,13 @@ public class FragmentProblems extends
     List<Problem> problems = null;
 
     static FragmentProblems factory = null;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        initProblems();
+        new GetProblems().execute();
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -70,7 +78,7 @@ public class FragmentProblems extends
                 onListItemClick((LoadMoreListView) parent, view, position, id);
             }
         });
-        new GetProblems().execute();
+        problems_to_view();
     }
 
     public void onListItemClick(LoadMoreListView l, View v, int position, long id) {
@@ -113,9 +121,13 @@ public class FragmentProblems extends
         //步骤4：定义后台进程执行完后的处理，本例，采用Toast
 
         protected void onPostExecute(Void result/*参数3*/) {
-            if (problems != null)
-                initListData(problems);
+            problems_to_view();
             progressDialogDismiss();
         }
+    }
+
+    private void problems_to_view() {
+        if (problems != null)
+            initListData(problems);
     }
 }

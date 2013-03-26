@@ -8,6 +8,7 @@ import DD.Android.FixComputer.core.ServiceFC;
 import DD.Android.FixComputer.core.Price;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,12 @@ public class FragmentPricing extends
     List<Price> prices = null;
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
+        new GetPrices().execute();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_pricing, null);
     }
@@ -38,7 +45,7 @@ public class FragmentPricing extends
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);    //To change body of overridden methods use File | Settings | File Templates.
-        new GetPrices().execute();
+        prices_to_view();
     }
 
 
@@ -68,10 +75,14 @@ public class FragmentPricing extends
         //步骤4：定义后台进程执行完后的处理，本例，采用Toast
 
         protected void onPostExecute(Void result/*参数3*/) {
-            if (prices != null)
-                initListData(prices);
+            prices_to_view();
             progressDialogDismiss();
         }
+    }
+
+    private void prices_to_view() {
+        if (prices != null)
+            initListData(prices);
     }
 
 }
