@@ -93,13 +93,13 @@ public class ActivityMain extends
 //                set_btn_toolbar_press(position);
                 switch (position) {
                     case 2:
-                        menu.setSlidingEnabled(true);
+                        show_sliding_menu();
                         break;
 //                    case 3:
 //                        show_menu();
 //                        break;
                     default:
-                        menu.setSlidingEnabled(false);
+                        hide_sliding_menu();
                         break;
                 }
             }
@@ -133,16 +133,24 @@ public class ActivityMain extends
 
     private void init_sliding_menu() {
         menu = new SlidingMenu(this);
-        menu.setSlidingEnabled(false);
         menu.setMode(SlidingMenu.RIGHT);
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
 //        menu.setShadowWidthRes(R.dimen.shadow_width);
 //        menu.setShadowDrawable(R.drawable.shadow);
         menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
-        menu.setFadeDegree(0.35f);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.fragment_menu);
 
+        hide_sliding_menu();
+    }
+
+    private void hide_sliding_menu(){
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setFadeDegree(1.0f);
+    }
+
+    private void show_sliding_menu(){
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setFadeDegree(0.35f);
     }
 
     @Override
