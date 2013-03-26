@@ -9,7 +9,41 @@
     <item android:id="@+id/menu_cancel"
           android:showAsAction="ifRoom"
           android:title="取消"
-          android:visible="false"
             />
-    <!--android:visible="false"-->
+
+    <!--<item android:id="@+id/menu_contacted"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="已联系"-->
+          <!--android:titleCondensed="contacted"-->
+            <!--/>-->
+
+    <!--<item android:id="@+id/menu_visited"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="已上门"-->
+          <!--android:titleCondensed="visited"-->
+            <!--/>-->
+
+    <!--<item android:id="@+id/menu_token"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="带回维修"-->
+          <!--android:titleCondensed="token"-->
+            <!--/>-->
+
+    <!--<item android:id="@+id/menu_repaired"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="维修完毕"-->
+          <!--android:titleCondensed="repaired"-->
+            <!--/>-->
+
+    <!--<item android:id="@+id/menu_paid"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="已支付"-->
+          <!--android:titleCondensed="paid"-->
+            <!--/>-->
+
+    <!--<item android:id="@+id/menu_finish"-->
+          <!--android:showAsAction="ifRoom"-->
+          <!--android:title="完毕"-->
+          <!--android:titleCondensed="finish"-->
+            <!--/>-->
 </menu>

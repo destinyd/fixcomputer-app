@@ -84,9 +84,9 @@ public class ServiceFC {
         }
     }
 
-    public static Problem updateProblem(String problem_id, String uuid, String status) throws IOException  {
+    public static Problem updateProblem(String problem_id, String uuid, String status,String plus) throws IOException  {
         try {
-            String url = String.format(FORMAT_URL_PROBLEM_WITH_UUID_STATUS, problem_id, uuid,status);
+            String url = String.format(FORMAT_URL_PROBLEM_WITH_UUID_STATUS, problem_id, uuid,status,plus);
             HttpRequest request = post(url)
                     ;
             String body = request.body();

@@ -2,10 +2,14 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.core.*;
+import android.app.AlertDialog;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -13,6 +17,7 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.github.kevinsawicki.wishlist.Toaster;
+import com.umeng.analytics.MobclickAgent;
 import roboguice.inject.InjectExtra;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
@@ -53,6 +58,10 @@ public class ActivityProblem extends ActivityFC {
 
     @InjectExtra(PROBLEM)
     protected Problem problem;
+
+    String action= null,plus = "";
+
+    View v_et;
 
     MenuItem menu_cancel;
 
@@ -96,13 +105,46 @@ public class ActivityProblem extends ActivityFC {
                 start_get_problem(null);
                 return true;
             case R.id.menu_cancel:
-                update_status(null);
+                plus = "";
+                update_status("cancel");
                 return true;
             default:
+                String tc = item.getTitleCondensed().toString();
+                action = tc;
+                if("token".equals(action) || "paid".equals(action)){
+                    dialog_for_plus();
+                    return true;
+                }
+                else if("contacted".equals(action) || "visited".equals(action) || "repaired".equals(action) || "finish".equals(action)){
+                    plus = "";
+                    update_status(action);
+                    return true;
+                }
                 return super.onOptionsItemSelected(item);
         }
     }
 
+    private void dialog_for_plus() {
+        LayoutInflater inflater = LayoutInflater.from(this);
+        v_et = inflater.inflate(R.layout.dialog_edittext, null);
+
+        DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface d, int which) {
+                EditText et_message = (EditText)v_et.findViewById(R.id.et_message);
+                plus = et_message.getText().toString();
+                update_status(action);
+            }
+        };
+
+        new AlertDialog.Builder(this)
+                .setTitle("plus")
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setView(v_et)
+                .setNegativeButton(getString(android.R.string.cancel), null)
+                .setPositiveButton(getString(android.R.string.ok), OkClick)
+                .show();
+
+    }
 
     private void problem_to_view() {
         tv_status.setText(problem.getStatusStr());
@@ -242,7 +284,7 @@ public class ActivityProblem extends ActivityFC {
 
         task = new RoboAsyncTask<Boolean>(this) {
             public Boolean call() throws Exception {
-                problem = ServiceFC.updateProblem(problem.get_id(), new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString(), "cancel");
+                problem = ServiceFC.updateProblem(problem.get_id(),new DeviceUuidFactory(ActivityProblem.this).getDeviceUuid().toString(), action,plus);
                 return true;
             }
 

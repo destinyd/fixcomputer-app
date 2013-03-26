@@ -69,7 +69,7 @@ public class Constants {
 
         public static final String FORMAT_URL_PROBLEM_WITH_UUID = URL_BASE + "/android/%s.json?uuid=%s";
 
-        public static final String FORMAT_URL_PROBLEM_WITH_UUID_STATUS = URL_BASE + "/android/%s.json?uuid=%s&problem[status]=%s";
+        public static final String FORMAT_URL_PROBLEM_WITH_UUID_STATUS = URL_BASE + "/android/%s.json?uuid=%s&problem[status]=%s&proble[status_plus]=%s";
 
         public static final String FORMAT_URL_STATUS = URL_BASE + "/status.json?uuid=%s";
 
