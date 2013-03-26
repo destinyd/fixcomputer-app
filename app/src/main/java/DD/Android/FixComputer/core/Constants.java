@@ -216,7 +216,7 @@ public class Constants {
         private Delay() {
         }
 
-        public static final int GET_STATUS = 5000;
+        public static final int GET_STATUS = 60000;
 //        public static final int GET_STATUS = 600000;
     }
 
