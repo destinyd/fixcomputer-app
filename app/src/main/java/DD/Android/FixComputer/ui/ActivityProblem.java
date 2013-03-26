@@ -109,16 +109,18 @@ public class ActivityProblem extends ActivityFC {
                 update_status("cancel");
                 return true;
             default:
-                String tc = item.getTitleCondensed().toString();
-                action = tc;
-                if("token".equals(action) || "paid".equals(action)){
-                    dialog_for_plus();
-                    return true;
-                }
-                else if("contacted".equals(action) || "visited".equals(action) || "repaired".equals(action) || "finish".equals(action)){
-                    plus = "";
-                    update_status(action);
-                    return true;
+                if(item.getTitleCondensed() != null){
+                    String tc = item.getTitleCondensed().toString();
+                    action = tc;
+                    if("token".equals(action) || "paid".equals(action)){
+                        dialog_for_plus();
+                        return true;
+                    }
+                    else if("contacted".equals(action) || "visited".equals(action) || "repaired".equals(action) || "finish".equals(action)){
+                        plus = "";
+                        update_status(action);
+                        return true;
+                    }
                 }
                 return super.onOptionsItemSelected(item);
         }
@@ -275,10 +277,12 @@ public class ActivityProblem extends ActivityFC {
         task.execute();
     }
 //
-    public void update_status(View view) {
+    public void update_status(String aciton) {
         if (task != null) {
             return;
         }
+
+        this.action = action;
 
         progressDialogShow(this);
 
