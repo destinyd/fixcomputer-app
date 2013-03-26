@@ -43,6 +43,13 @@ public class ProblemsService extends RoboService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();    //To change body of overridden methods use File | Settings | File Templates.
+
         //初始化
         messageNotification = new Notification();
         messageNotification.icon = R.drawable.ic_launcher;
@@ -54,10 +61,8 @@ public class ProblemsService extends RoboService {
         messageThread = new MessageThread();
         messageThread.isRunning = true;
         messageThread.start();
-
-        return super.onStartCommand(intent, flags, startId);
     }
-
+    
     @Override
     public IBinder onBind(Intent intent) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
