@@ -45,7 +45,7 @@ public class ProblemsService extends RoboService {
     public int onStartCommand(Intent intent, int flags, int startId) {
         //初始化
         messageNotification = new Notification();
-        messageNotification.icon = R.drawable.icon;
+        messageNotification.icon = R.drawable.ic_launcher;
         messageNotification.tickerText = "新消息";
         messageNotification.defaults = Notification.DEFAULT_SOUND;
         messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
