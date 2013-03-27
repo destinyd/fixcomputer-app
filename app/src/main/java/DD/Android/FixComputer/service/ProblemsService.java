@@ -15,6 +15,7 @@ import roboguice.service.RoboService;
 import roboguice.util.RoboAsyncTask;
 
 import java.io.IOException;
+import java.util.Calendar;
 
 import static com.github.kevinsawicki.http.HttpRequest.get;
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
@@ -50,11 +51,19 @@ public class ProblemsService extends RoboService {
     public void onCreate() {
         super.onCreate();    //To change body of overridden methods use File | Settings | File Templates.
 
+        PropertiesController.readConfiguration();
         //初始化
         messageNotification = new Notification();
         messageNotification.icon = R.drawable.ic_launcher;
         messageNotification.tickerText = "新消息";
-        messageNotification.defaults = Notification.DEFAULT_SOUND;
+        int style_notifi = 0;
+        if (Settings.getFactory().isSoundNotifi)
+            style_notifi = style_notifi | Notification.DEFAULT_SOUND;
+        if (Settings.getFactory().isShockNotifi)
+            style_notifi = style_notifi | Notification.DEFAULT_VIBRATE;
+        if (Settings.getFactory().isLightNotifi)
+            style_notifi = style_notifi | Notification.DEFAULT_LIGHTS;
+        messageNotification.defaults = style_notifi;
         messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         //开启线程
@@ -62,7 +71,7 @@ public class ProblemsService extends RoboService {
         messageThread.isRunning = true;
         messageThread.start();
     }
-    
+
     @Override
     public IBinder onBind(Intent intent) {
         return null;  //To change body of implemented methods use File | Settings | File Templates.
@@ -91,36 +100,38 @@ public class ProblemsService extends RoboService {
 
         public void run() {
             while (isRunning) {
-                try {
-                    ProblemStatus get_ps = ServiceFC.getStatus(new DeviceUuidFactory(ProblemsService.this).getDeviceUuid().toString());
-                    if (
-                            ps == null ||
-                                    (
-                                            ps != null && get_ps.getLast_changed_at() != null && ps.getLast_changed_at() != null && get_ps.getLast_changed_at().after(ps.getLast_changed_at())
-                                    )
-                            ) {
-                        ps = get_ps;
-                        if (ps.getLast() != null) {
-                            String str_status = ps.getLast().getStatus();
-                            if (!str_status.equals("cancel") && !str_status.equals("order")) {
-                                messageIntent = new Intent(ProblemsService.this, ActivityProblem.class).putExtra(PROBLEM, ps.getLast());
-                                messagePendingIntent = PendingIntent.getActivity(ProblemsService.this, 0, messageIntent, 0);
-                                //更新通知栏
-                                messageNotification.setLatestEventInfo(
-                                        ProblemsService.this,
-                                        "柳州电脑上门维修",
-                                        "您的故障单状态已更新为" + ps.getLast().getStatusStr() + ",点击查看", messagePendingIntent);
-                                messageNotificatioManager.notify(NOTIFICATION_ID, messageNotification);
+                if (Settings.getFactory().isNotifi) {
+                    Calendar cal = Calendar.getInstance();
+                    if (!(Settings.getFactory().isNotDisturb && (cal.get(Calendar.HOUR_OF_DAY) > 22 || cal.get(Calendar.HOUR_OF_DAY) < 8))) {
+                        try {
+                            ProblemStatus get_ps = ServiceFC.getStatus(new DeviceUuidFactory(ProblemsService.this).getDeviceUuid().toString());
+                            if (
+                                    ps == null ||
+                                            (
+                                                    ps != null && get_ps.getLast_changed_at() != null && ps.getLast_changed_at() != null && get_ps.getLast_changed_at().after(ps.getLast_changed_at())
+                                            )
+                                    ) {
+                                ps = get_ps;
+                                if (ps.getLast() != null) {
+                                    String str_status = ps.getLast().getStatus();
+                                    if (!str_status.equals("cancel") && !str_status.equals("order")) {
+                                        messageIntent = new Intent(ProblemsService.this, ActivityProblem.class).putExtra(PROBLEM, ps.getLast());
+                                        messagePendingIntent = PendingIntent.getActivity(ProblemsService.this, 0, messageIntent, 0);
+                                        //更新通知栏
+                                        messageNotification.setLatestEventInfo(
+                                                ProblemsService.this,
+                                                "柳州电脑上门维修",
+                                                "您的故障单状态已更新为" + ps.getLast().getStatusStr() + ",点击查看", messagePendingIntent);
+                                        messageNotificatioManager.notify(NOTIFICATION_ID, messageNotification);
+                                    }
+                                }
                             }
+                        } catch (Exception e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                         }
                     }
-                    //每次通知完，通知ID递增一下，避免消息覆盖掉
-                    //                         messageNotificationID++;
-                } catch (Exception e) {
-                    e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
                 try {
-                    //休息2分钟
                     Thread.sleep(Constants.Delay.GET_STATUS);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

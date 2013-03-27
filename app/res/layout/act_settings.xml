@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_width="fill_parent" android:layout_height="fill_parent"
+                xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView android:scrollbars="none" android:fadingEdge="none" android:layout_width="fill_parent"
+                android:layout_height="wrap_content">
+
+        <LinearLayout android:orientation="vertical" android:layout_width="fill_parent"
+                      android:layout_height="fill_parent">
+            <LinearLayout android:orientation="vertical"
+                          android:layout_width="fill_parent"
+                          android:layout_height="fill_parent"
+                          style="@style/style_patterns"
+                          android:id="@+id/layout_pos"
+                    >
+                <LinearLayout android:orientation="vertical"
+                              android:layout_width="fill_parent"
+                              android:layout_height="fill_parent"
+                        >
+                    <TextView android:id="@+id/textview_introduction_title"
+                              android:text="设置"
+                              style="@style/style_patterns_sectionBar"/>
+                    <include layout="@layout/include_patterns_sectionline"/>
+
+                    <LinearLayout android:orientation="vertical"
+                                  android:layout_width="fill_parent"
+                                  android:layout_height="wrap_content"
+                            >
+                        <RelativeLayout
+                                style="@style/Style_Patterns_Content"
+                                android:id="@+id/rl_isNotifi">
+                            <TextView
+                                    style="@style/Patterns_Text_Left"
+                                    android:text="消息提醒"/>
+                            <CheckBox style="@style/Profile_Item_Right"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/cb_isNotifi"
+                                      android:onClick="handleCbChange"
+                                    />
+                        </RelativeLayout>
+
+                        <include layout="@layout/include_patterns_divideline"/>
+                        <RelativeLayout android:id="@+id/rl_isSoundNotifi"
+                                        style="@style/Style_Patterns_Content"
+                                >
+                            <TextView
+                                    style="@style/Patterns_Text_Left"
+                                    android:text="声音提醒"/>
+                            <CheckBox style="@style/Profile_Item_Right"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/cb_isSoundNotifi"
+                                      android:onClick="handleCbChange"
+
+                                    />
+                        </RelativeLayout>
+
+                        <include layout="@layout/include_patterns_divideline"/>
+                        <RelativeLayout android:id="@+id/rl_isShockNotifi"
+                                        style="@style/Style_Patterns_Content"
+                                >
+                            <TextView
+                                    style="@style/Patterns_Text_Left"
+                                    android:text="震动提醒"/>
+                            <CheckBox
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:id="@+id/cb_isShockNotifi"
+                                    style="@style/Profile_Item_Right"
+                                    android:onClick="handleCbChange"
+                                    />
+                        </RelativeLayout>
+                        <include layout="@layout/include_patterns_divideline"/>
+                        <RelativeLayout
+                                style="@style/Style_Patterns_Content"
+                                android:id="@+id/rl_isLightNotifi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                >
+                            <TextView style="@style/Patterns_Text_Left"
+                                      android:id="@+id/textView"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="闪烁提醒"
+                                    />
+                            <CheckBox style="@style/Profile_Item_Right"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/cb_isLightNotifi"
+                                      android:onClick="handleCbChange"
+                                    />
+                        </RelativeLayout>
+
+                        <include layout="@layout/include_patterns_divideline"/>
+                        <RelativeLayout style="@style/Style_Patterns_Content"
+                                        android:id="@+id/rl_isNotDisturb"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                >
+                            <TextView style="@style/Patterns_Text_Left"
+                                      android:id="@+id/textView1"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:text="免打扰(22:00~8:00)"
+                                    />
+                            <CheckBox style="@style/Profile_Item_Right"
+                                      android:layout_width="wrap_content"
+                                      android:layout_height="wrap_content"
+                                      android:id="@+id/cb_isNotDisturb"
+                                      android:onClick="handleCbChange"
+                                    />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

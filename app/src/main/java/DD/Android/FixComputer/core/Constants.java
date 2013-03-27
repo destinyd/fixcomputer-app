@@ -232,6 +232,13 @@ public class Constants {
         public static final int COUNT = 3;
     }
 
+    public static class Setting {
+        private Setting() {
+        }
+        public static final String SDCARD_PATH = "/.fc";
+        public static final String FILE_NAME = "settings.json";
+    }
+
 }
 
 

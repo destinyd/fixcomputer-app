@@ -3,6 +3,8 @@ package DD.Android.FixComputer.ui;
 
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
+import DD.Android.FixComputer.core.PropertiesController;
+import DD.Android.FixComputer.core.Settings;
 import DD.Android.FixComputer.service.ProblemsService;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -25,6 +27,7 @@ import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -117,6 +120,11 @@ public class ActivityMain extends
         UmengUpdateAgent.update(this);
         UMFeedbackService.enableNewReplyNotification(this, NotificationType.AlertDialog);
         MobclickAgent.setDebugMode(true);
+        PropertiesController.readConfiguration();
+        start_message_service();
+    }
+
+    private void start_message_service() {
         serviceIntent = new Intent(this, ProblemsService.class);
         startService(serviceIntent);
     }
@@ -145,12 +153,12 @@ public class ActivityMain extends
         hide_sliding_menu();
     }
 
-    private void hide_sliding_menu(){
+    private void hide_sliding_menu() {
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         menu.setFadeDegree(1.0f);
     }
 
-    private void show_sliding_menu(){
+    private void show_sliding_menu() {
         menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
         menu.setFadeDegree(0.35f);
     }
@@ -210,9 +218,10 @@ public class ActivityMain extends
     }
 
     public void menu_click(View v) {
-        TextView menu_feedback = (TextView)findViewById(id.menu_feedback);
-        TextView menu_exit = (TextView)findViewById(id.menu_exit);
-        TextView menu_full_exit = (TextView)findViewById(id.menu_full_exit);
+        TextView menu_feedback = (TextView) findViewById(id.menu_feedback);
+        TextView menu_exit = (TextView) findViewById(id.menu_exit);
+        TextView menu_full_exit = (TextView) findViewById(id.menu_full_exit);
+        TextView menu_settings = (TextView) findViewById(id.menu_settings);
 
         if (menu_feedback.equals(v)) {
             UMFeedbackService.openUmengFeedbackSDK(this);
@@ -229,8 +238,7 @@ public class ActivityMain extends
                     .setNegativeButton(getString(android.R.string.cancel), null)
                     .setPositiveButton(getString(android.R.string.ok), OkClick)
                     .show();
-        }
-        else if(menu_full_exit.equals(v)){
+        } else if (menu_full_exit.equals(v)) {
             DialogInterface.OnClickListener OkClick = new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface d, int which) {
 
@@ -245,6 +253,8 @@ public class ActivityMain extends
                     .setNegativeButton(getString(android.R.string.cancel), null)
                     .setPositiveButton(getString(android.R.string.ok), OkClick)
                     .show();
+        } else if (menu_settings.equals(v)) {
+            startActivity(new Intent(this, ActivitySettings.class));
         }
     }
 

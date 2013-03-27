@@ -104,6 +104,10 @@
                 android:windowSoftInputMode="adjustPan"
                 />
 
+        <activity
+                android:name=".ui.ActivitySettings"
+                />
+
         <service
                 android:name=".service.ProblemsService"
                 android:process=":message" >
