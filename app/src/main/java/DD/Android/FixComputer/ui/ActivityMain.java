@@ -4,7 +4,6 @@ package DD.Android.FixComputer.ui;
 import DD.Android.FixComputer.R;
 import DD.Android.FixComputer.R.id;
 import DD.Android.FixComputer.core.PropertiesController;
-import DD.Android.FixComputer.core.Settings;
 import DD.Android.FixComputer.service.ProblemsService;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -13,6 +12,8 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
 import com.github.rtyley.android.sherlock.roboguice.activity.RoboSherlockFragmentActivity;
 import com.slidingmenu.lib.SlidingMenu;
@@ -27,7 +28,6 @@ import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -44,9 +44,6 @@ public class ActivityMain extends
 
     @InjectView(id.btn_toolbar_2)
     private TextView btn_toolbar_2;
-
-    @InjectView(id.btn_toolbar_3)
-    private TextView btn_toolbar_3;
 
     List<TextView> list_btn;
 
@@ -76,7 +73,6 @@ public class ActivityMain extends
         list_btn.add(btn_toolbar_0);
         list_btn.add(btn_toolbar_1);
         list_btn.add(btn_toolbar_2);
-        list_btn.add(btn_toolbar_3);
 
         toolbar_item_selected_bg = getResources().getColor(R.color.toolbar_item_selected_bg);
         toolbar_item_bg = getResources().getColor(R.color.toolbar_item_bg);
@@ -95,14 +91,10 @@ public class ActivityMain extends
             @Override
             public void onPageSelected(int position) {
                 pop_btn_toolbar(position);
-//                set_btn_toolbar_press(position);
                 switch (position) {
                     case 2:
                         show_sliding_menu();
                         break;
-//                    case 3:
-//                        show_menu();
-//                        break;
                     default:
                         hide_sliding_menu();
                         break;
@@ -111,7 +103,6 @@ public class ActivityMain extends
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                //To change body of implemented methods use File | Settings | File Templates.
             }
         });
 
@@ -124,15 +115,20 @@ public class ActivityMain extends
         start_message_service();
     }
 
+    private void hide_sliding_menu() {
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        menu.setFadeDegree(1.0f);
+    }
+
+    private void show_sliding_menu() {
+        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+        menu.setFadeDegree(0.35f);
+    }
+
     private void start_message_service() {
         serviceIntent = new Intent(this, ProblemsService.class);
         startService(serviceIntent);
     }
-
-//    private void set_btn_toolbar_press(int position) {
-//        Button btn = (Button) getViewResourceByName("btn_toolbar_" + String.valueOf(position));
-//        btn.setPressed(true);
-//    }
 
     private void pop_btn_toolbar(int id) {
         for (TextView tv : list_btn) {
@@ -144,29 +140,24 @@ public class ActivityMain extends
     private void init_sliding_menu() {
         menu = new SlidingMenu(this);
         menu.setMode(SlidingMenu.RIGHT);
-//        menu.setShadowWidthRes(R.dimen.shadow_width);
-//        menu.setShadowDrawable(R.drawable.shadow);
         menu.setBehindOffsetRes(R.dimen.slidingmenu_offset);
         menu.attachToActivity(this, SlidingMenu.SLIDING_CONTENT);
         menu.setMenu(R.layout.fragment_menu);
-
         hide_sliding_menu();
     }
 
-    private void hide_sliding_menu() {
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
-        menu.setFadeDegree(1.0f);
-    }
 
-    private void show_sliding_menu() {
-        menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-        menu.setFadeDegree(0.35f);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getSupportMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case android.R.id.home:
+            case id.menu:
                 menu.toggle();
                 return true;
 
@@ -174,29 +165,9 @@ public class ActivityMain extends
         return super.onOptionsItemSelected(item);
     }
 
-    public void handleMenu(View v) {
-        show_menu();
-    }
-
-    public void show_menu() {
-        if (!menu.isMenuShowing())
-            menu.showMenu(true);
-        menu.showContent();
-    }
-
-
-    private View getViewResourceByName(String aString) {
-        String packageName = getPackageName();
-        int resId = getResources().getIdentifier(aString, "id", packageName);
-        return findViewById(resId);
-    }
-
     public void handleBtnClick(View view) {
         int id = Integer.parseInt(String.valueOf(((TextView) view).getContentDescription()));
         mViewPager.setCurrentItem(id);
-//        if(id == 3){
-//            show_sliding_menu();
-//        }
     }
 
     public void handleAd(View view) {
