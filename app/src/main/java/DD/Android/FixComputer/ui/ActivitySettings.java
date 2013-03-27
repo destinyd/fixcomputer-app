@@ -5,6 +5,7 @@ import DD.Android.FixComputer.core.*;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+import com.umeng.analytics.MobclickAgent;
 import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
@@ -99,6 +100,18 @@ public class ActivitySettings extends ActivityFC {
 
     private Settings sets(){
         return Settings.getFactory();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        MobclickAgent.onResume(this);
     }
 
 //

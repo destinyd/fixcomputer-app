@@ -316,4 +316,16 @@ public class ActivityProblem extends ActivityFC {
         };
         task.execute();
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();    //To change body of overridden methods use File | Settings | File Templates.
+        MobclickAgent.onPause(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();    //To change body of overridden methods use File | Settings | File Templates.
+        MobclickAgent.onResume(this);
+    }
 }
