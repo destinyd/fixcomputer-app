@@ -33,6 +33,7 @@ public class ServiceFC {
                 .part("problem[phone]", problem.getPhone())
                 .part("problem[lat]", problem.getLat())
                 .part("problem[lng]", problem.getLng())
+                .part("problem[desc]", problem.getDesc())
                 .part("problem[uuid]", uuid);
 
 
