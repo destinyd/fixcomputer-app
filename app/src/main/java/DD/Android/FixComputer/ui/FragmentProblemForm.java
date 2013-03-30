@@ -132,7 +132,7 @@ public class FragmentProblemForm extends
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 MKSuggestionInfo mk_si = (MKSuggestionInfo) adapterView.getItemAtPosition(i);
                 actv_address.setText(
-//                        mk_si.city +
+                        mk_si.city +
                         mk_si.key);
                 actv_address.requestFocus();
                 actv_address.setSelection(actv_address.getText().length());
@@ -152,6 +152,19 @@ public class FragmentProblemForm extends
              * 返回poi搜索结果。 参数： arg0 - 搜索结果 arg1 - 返回结果类型: MKSearch.TYPE_POI_LIST MKSearch.TYPE_AREA_POI_LIST MKSearch.TYPE_CITY_LIST arg2 - 错误号，0表示正确返回
              */
 //                Toaster.showLong(getActivity(),"onGetPoiResult" + String.valueOf(mkPoiResult.getNumPois()));
+                if (error != 0) {
+                    String str = String.format("错误号：%d", error);
+                    Toast.makeText(getActivity(), str, Toast.LENGTH_LONG).show();
+                    return;
+                }
+                if(mkPoiResult != null && mkPoiResult.getNumPois() > 0)
+                {
+                    MKPoiInfo poi = mkPoiResult.getPoi(0);
+                    problem.setLat(poi.pt.getLatitudeE6() / 1E6);
+                    problem.setLng(poi.pt.getLongitudeE6() / 1E6);
+                    //关闭gps定位
+                    mLocClient.stop();
+                }
             }
 
             @Override
@@ -181,8 +194,15 @@ public class FragmentProblemForm extends
                     Toaster.showLong(getActivity(), "您的地址未能定位成功，请自行填写。");
                     actv_address.setText(mkAddrInfo.strAddr);//.strAddr);
                 } else {
-                    Toaster.showLong(getActivity(), "您所在地址 " + mkAddrInfo.strAddr + "，如果有偏差请自行修改。");
-                    actv_address.setText(mkAddrInfo.strAddr);//.strAddr);
+                    if ("".equals(actv_address.getText().toString())) {
+                        Toaster.showLong(getActivity(), "您所在地址 " + mkAddrInfo.strAddr + "，如果有偏差请自行修改。");
+                        actv_address.setText(mkAddrInfo.strAddr);//.strAddr);
+                        problem.setLat(mkAddrInfo.geoPt.getLatitudeE6() / 1E6);
+                        problem.setLng(mkAddrInfo.geoPt.getLongitudeE6() / 1E6);
+                    }
+                    else{
+                        Toaster.showLong(getActivity(), "您所在地址 " + mkAddrInfo.strAddr + "，因为您已经填写地址，未能帮您自动填充。");
+                    }
                 }
                 //关闭gps定位
                 mLocClient.stop();
@@ -242,6 +262,7 @@ public class FragmentProblemForm extends
         option.setCoorType("bd09ll");     //设置坐标类型
         mLocClient.setLocOption(option);
         mLocClient.start();
+        problem = new Problem();
     }
 
     private void start_search() {
@@ -282,19 +303,19 @@ public class FragmentProblemForm extends
 
         progressDialogShow(getActivity());
 
-        problem = new Problem();
         problem.setPhone(et_phone.getText().toString());
         problem.setName(et_name.getText().toString());
         problem.setAddress(actv_address.getText().toString());
         problem.setAddress_plus(et_address_plus.getText().toString());
         problem.setDesc(et_desc.getText().toString());
-        if(locData != null && !(locData.latitude == 4.9E-324 && locData.longitude == 4.9E-324)){
-            problem.setLat(locData.latitude);
-            problem.setLng(locData.longitude);
-        }
-        else{
-            problem.setLat(0.0);
-            problem.setLng(0.0);
+        if(problem.getLat() == null && problem.getLng() == null){
+            if (locData != null && !(locData.latitude == 4.9E-324 && locData.longitude == 4.9E-324)) {
+                problem.setLat(locData.latitude);
+                problem.setLng(locData.longitude);
+            } else {
+                problem.setLat(0.0);
+                problem.setLng(0.0);
+            }
         }
 
         postTask = new RoboAsyncTask<Boolean>(getActivity()) {
@@ -369,6 +390,7 @@ public class FragmentProblemForm extends
     }
 
     private void clean_edittext() {
+        problem = new Problem();
         et_phone.setText("");
         et_name.setText("");
         actv_address.setText("");
