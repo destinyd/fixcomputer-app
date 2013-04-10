@@ -23,7 +23,6 @@ import roboguice.inject.InjectView;
 import roboguice.util.RoboAsyncTask;
 
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
-import static DD.Android.FixComputer.core.Constants.Other.NOTIFICATION_ID;
 
 public class ActivityProblem extends ActivityFC {
 
@@ -85,7 +84,7 @@ public class ActivityProblem extends ActivityFC {
 
         start_get_problem(null);
         NotificationManager messageNotificatioManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        messageNotificatioManager.cancel(NOTIFICATION_ID);
+        messageNotificatioManager.cancel(R.string.app_name);
     }
 
     @Override

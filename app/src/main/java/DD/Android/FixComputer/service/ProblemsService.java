@@ -19,7 +19,6 @@ import java.util.Calendar;
 
 import static com.github.kevinsawicki.http.HttpRequest.get;
 import static DD.Android.FixComputer.core.Constants.Extra.PROBLEM;
-import static DD.Android.FixComputer.core.Constants.Other.NOTIFICATION_ID;
 
 public class ProblemsService extends RoboService {
 
@@ -122,7 +121,7 @@ public class ProblemsService extends RoboService {
                                                 ProblemsService.this,
                                                 "柳州电脑上门维修",
                                                 "您的故障单状态已更新为" + ps.getLast().getStatusStr() + ",点击查看", messagePendingIntent);
-                                        messageNotificatioManager.notify(NOTIFICATION_ID, messageNotification);
+                                        messageNotificatioManager.notify(R.string.app_name, messageNotification);
                                     }
                                 }
                             }
